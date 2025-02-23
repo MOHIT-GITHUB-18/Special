@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link rel="stylesheet" href="page2.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <canvas id="fireworksCanvas"></canvas>
+
+    <div id="main">
+        <h1>🎉 Happy Birthday to You 🎉</h1>
+        <button id="clb">Celebrate</button>
+        <a href="../others/page3.html"><button id="nxt">Next page</button></a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("fireworksCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let fireworks = [];
+
+        class Firework {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.particles = [];
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: this.x,
+                        y: this.y,
+                        speedX: (Math.random() - 0.5) * 4,
+                        speedY: (Math.random() - 0.5) * 4,
+                        life: 100,
+                        color: `hsl(${Math.random() * 360}, 100%, 50%)`
+                    });
+                }
+            }
+
+            update() {
+                this.particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.life--;
+                });
+                this.particles = this.particles.filter(p => p.life > 0);
+            }
+
+            draw() {
+                this.particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+        }
+
+        function startFireworks() {
+            for (let i = 0; i < 7; i++) {
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height * 0.6;
+                fireworks.push(new Firework(x, y));
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach(fw => {
+                fw.update();
+                fw.draw();
+            });
+            fireworks = fireworks.filter(fw => fw.particles.length > 0);
+            requestAnimationFrame(animate);
+        }
+
+        document.getElementById("clb").addEventListener("click", startFireworks);
+
+        animate();
+
+    </script>
+</body>
+</html>

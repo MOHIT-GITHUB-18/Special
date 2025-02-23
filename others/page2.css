@@ -1,0 +1,80 @@
+@font-face {
+    font-family: pop;
+    src: url(../fonts/Poppins/Poppins-Regular.ttf);
+}
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background: black; */
+    font-family: pop;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 100vh;
+    width: 100vw;
+}
+
+#main {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-top: 20vh;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+#nxt {
+    font-family: pop;
+    padding: 15px 20px;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 15px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#nxt {
+    background: #3d96df;
+    box-shadow: 0 0 10px #3d96df;
+}
+
+#nxt:hover {
+    box-shadow: 0 0 50px 1px #3d96df;
+}
+#clb {
+    font-family: pop;
+    padding: 15px 20px;
+    border: none;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 15px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#clb {
+    background: #ae00ff;
+    box-shadow: 0 0 10px #ae00ff;
+}
+
+#clb:hover {
+    box-shadow: 0 0 50px 1px #ae00ff;
+}
